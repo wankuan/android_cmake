@@ -1,3 +1,0 @@
-/home/wankuan/NDK/example2/jni/CMakeFiles/rebuild_cache.dir
-/home/wankuan/NDK/example2/jni/CMakeFiles/edit_cache.dir
-/home/wankuan/NDK/example2/jni/CMakeFiles/main.dir
