@@ -3,7 +3,7 @@ ANDROID_NDK_PATH=/usr/android-ndk-r20/
 cd ./build
 if [ "$1" = 'all' ] ;then
     cmake\
-      -DDEBUG=NO\
+      -DCMAKE_BUILD_TYPE=RELEASE\
       -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_PATH/build/cmake/android.toolchain.cmake \
       -DANDROID_NDK=$ANDROID_NDK_PATH \
       -DANDROID_TOOLCHAIN=clang\
