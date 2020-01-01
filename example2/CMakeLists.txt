@@ -1,36 +1,22 @@
-#****************************This is Project Info****************************
-project(MAIN)
-CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
-
-#ADD_DEFINITIONS("-Wall")
-#ADD_DEFINITIONS("-fPIC")
-#ADD_DEFINITIONS("-Wl,-lm")
-#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+CMAKE_MINIMUM_REQUIRED(VERSION 2.9)
+PROJECT(demo)
+SET(BUILD_NAME ${PROJECT_NAME})
 SET(CMAKE_CXX_FLAGS "-std=gnu++11 -Wall -fPIC -Wl,-Bsymbolic -lm -D__STDINT_LIMITS -D__STDINT_MACROS -D__ANDROID__ -DANDROID")
 
-#****************************This is Include File/Directories****************************
-INCLUDE_DIRECTORIES(../inc)
 
-#****************************This is Source File/Directories****************************
+INCLUDE_DIRECTORIES(
+                    ${CMAKE_CURRENT_SOURCE_DIR}/app/inc
+                    ${CMAKE_CURRENT_SOURCE_DIR}/app/inc_pub
+                    ${CMAKE_CURRENT_SOURCE_DIR}/module/inc
+                    ${CMAKE_CURRENT_SOURCE_DIR}/module/inc_pub
+                    )
+SET(srcs ${CMAKE_CURRENT_SOURCE_DIR}/entry.c)
 
-SET(DIR_SRCS ../src/main.c)
-#aux_source_directory(../src DIR_SRCS)
-#****************************This is Library Directories****************************
-#LINK_DIRECTORIES(../src)
-#LINK_DIRECTORIES(../../libextern/Android/lib)
 
-#****************************This is 3Party Library****************************
-#LINK_LIBRARIES(pthread)
-
-#****************************This is Output Directory****************************
-
-#SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-#SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-#SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+ADD_SUBDIRECTORY(app)
+ADD_SUBDIRECTORY(module)
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
-#****************************This is Output Library****************************
-#ADD_LIBRARY(main SHARED ${DIR_SRCS} )
-#TARGET_LINK_LIBRARIES(main)
+ADD_EXECUTABLE(${BUILD_NAME} ${srcs})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} app module)
 
-add_executable(main ${DIR_SRCS})
