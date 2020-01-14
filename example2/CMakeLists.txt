@@ -24,7 +24,9 @@ INCLUDE_DIRECTORIES(
                     ${CMAKE_CURRENT_SOURCE_DIR}/app/inc_pub
                     ${CMAKE_CURRENT_SOURCE_DIR}/module/inc
                     ${CMAKE_CURRENT_SOURCE_DIR}/module/inc_pub
+                    #${ANDROID_NDK}/sysroot/usr/include
                     )
+#link_directories(${ANDROID_LIB})
 SET(srcs ${CMAKE_CURRENT_SOURCE_DIR}/entry.c)
 
 
@@ -33,5 +35,4 @@ ADD_SUBDIRECTORY(module)
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
 ADD_EXECUTABLE(${BUILD_NAME} ${srcs})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} app module)
-
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} app module liblog.so)
